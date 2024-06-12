@@ -1,7 +1,17 @@
 package com.ez.sisemp.empleado.dao;
 
+import com.ez.sisemp.empleado.entity.EmpleadoEntity;
 import com.ez.sisemp.empleado.model.Empleado;
 import com.ez.sisemp.shared.config.MySQLConnection;
+//importaciones de JAKARTA
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
+//import javax.persistence.EntityManager;
+//import javax.persistence.EntityManagerFactory;
+//import javax.persistence.Persistence;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,6 +37,13 @@ public class EmpleadoDao{
     WHERE 
         e.activo = 1;
     """;
+
+    //JPQL para JPA
+    private static final String SQL_GET_ALL_EMPLEADOS_JPQL = """
+            SELECT e
+            FROM EmpleadoEntity e
+            """;
+
     private static String SQL_UPDATE_EMPLEADO = "UPDATE empleado SET nombres = ?, apellido_pat = ?, apellido_mat = ?, id_departamento = ?, correo = ?, salario = ? WHERE id = ?;";
     private static String SQL_DELETE_EMPLEADO = "UPDATE empleado set activo=0 WHERE id = ?;";
     private static String SQL_INSERT_EMPLEADO = "INSERT INTO empleado (codigo_empleado, nombres, apellido_pat, apellido_mat, id_departamento, correo, fecha_nacimiento, salario) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
@@ -40,6 +57,17 @@ public class EmpleadoDao{
         while (resultSet.next()) {
             empleados.add(mapResultSetToEmpleado(resultSet));
         }
+        return empleados;
+    }
+
+    //Integracion JPA a obtener Empleado
+    public List<EmpleadoEntity> obtenerEmpleadosJPA () {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("devUnit");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        //Obtener Lista de alumnos
+        var empleados = entityManager.createQuery(SQL_GET_ALL_EMPLEADOS_JPQL, EmpleadoEntity.class).getResultList();
+
         return empleados;
     }
 
