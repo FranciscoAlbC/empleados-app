@@ -76,9 +76,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600">
-                                Hola! ${sessionScope.user.primerNombre()}
+                                Hola! ${sessionScope.user.primerNombre}
                             </span>
-                            <img class="img-profile rounded-circle" src=${sessionScope.user.fotoPerfilBase64()} style="width:65" alt="profile photo">
+                            <img class="img-profile rounded-circle" src=${sessionScope.user.fotoPerfil} style="width:65" alt="profile photo">
 
                         </a>
                         <!-- Dropdown - User Information -->

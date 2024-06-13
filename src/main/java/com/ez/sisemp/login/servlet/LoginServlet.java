@@ -32,10 +32,10 @@ public class LoginServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         UsuarioBusiness business = new UsuarioBusiness();
         try {
-            Usuario usuario = business.login(request.getParameter("username"), request.getParameter("password"));
+            UsuarioEntity usuarioEntity = business.loginJPA(request.getParameter("username"), request.getParameter("password"));
             HttpSession session = request.getSession();
-            session.setAttribute("user", usuario);
-            if (usuario.rolId() == Roles.ADMIN.getId()) {
+            session.setAttribute("user", usuarioEntity);
+            if (usuarioEntity.getIdRol() == Roles.ADMIN.getId()) {
                 response.sendRedirect(Routes.ADMIN.getRoute());
             }else {
                 response.sendRedirect(Routes.EMPLEADO.getRoute());

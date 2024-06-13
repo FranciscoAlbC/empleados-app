@@ -54,6 +54,5 @@ public class UsuarioDao {
 
         UsuarioEntity usuario = query.getSingleResult();
         return usuario;
-
     }
 }
