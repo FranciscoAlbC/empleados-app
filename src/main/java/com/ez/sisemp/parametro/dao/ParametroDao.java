@@ -1,6 +1,7 @@
 package com.ez.sisemp.parametro.dao;
 
 import com.ez.sisemp.parametro.entity.DepartamentoEntity;
+import com.ez.sisemp.parametro.entity.RolesEntity;
 import com.ez.sisemp.parametro.exception.GetParametroException;
 import com.ez.sisemp.parametro.model.Departamento;
 import com.ez.sisemp.shared.config.MySQLConnection;
@@ -30,6 +31,11 @@ public class ParametroDao {
     //Metodo Obtener Departamentos
     public DepartamentoEntity getById (Integer departamentoId) {
         return entityManager.find(DepartamentoEntity.class, departamentoId);
+    }
+
+    //Metodo Obtener Roles
+    public RolesEntity getRoleById(Integer rolId) {
+        return entityManager.find(RolesEntity.class, rolId);
     }
 
     public List<Departamento> obtenerDepartamentos()  {

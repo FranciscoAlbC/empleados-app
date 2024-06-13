@@ -1,6 +1,7 @@
 package com.ez.sisemp.login.servlet;
 
 import com.ez.sisemp.login.business.UsuarioBusiness;
+import com.ez.sisemp.login.entity.UsuarioEntity;
 import com.ez.sisemp.login.enumeration.Roles;
 import com.ez.sisemp.login.exception.UserOrPassIncorrectException;
 import com.ez.sisemp.login.model.Usuario;

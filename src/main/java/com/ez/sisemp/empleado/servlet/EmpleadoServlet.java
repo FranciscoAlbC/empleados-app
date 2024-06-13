@@ -26,7 +26,7 @@ public class EmpleadoServlet extends HttpServlet {
         }
         EmpleadoBusiness business = new EmpleadoBusiness();
         try {
-            EmpleadoDashboard dashboard = business.obtenerDatosDashboard();
+            EmpleadoDashboard dashboard = business.obtenerDatosDashboardJPA();
             request.setAttribute("dashboard", dashboard);
             //List<Empleado> empleados = business.obtenerEmpleados();
             var empleados = business.obtenerEmpleadosJpa();

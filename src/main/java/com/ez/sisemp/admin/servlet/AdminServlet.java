@@ -1,5 +1,6 @@
 package com.ez.sisemp.admin.servlet;
 
+import com.ez.sisemp.admin.business.AdminBusiness;
 import com.ez.sisemp.admin.dao.AdminDao;
 import com.ez.sisemp.shared.utils.SessionUtils;
 
@@ -20,9 +21,11 @@ public class AdminServlet extends HttpServlet {
         if(!SessionUtils.validarSesion(request, response)){
             return;
         }
-        AdminDao dao = new AdminDao();
+        //AdminDao dao = new AdminDao();
+        AdminBusiness business = new AdminBusiness();
         try {
-            request.setAttribute("usuarios", dao.obtenerUsuarios());
+            var usuarios = business.obtenerUsuariosJpa();
+            request.setAttribute("usuarios", usuarios);
             request.getRequestDispatcher(ADMIN_JSP).forward(request, response);
         } catch (Exception e) {
             throw new ServletException(e);

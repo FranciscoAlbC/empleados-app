@@ -38,6 +38,8 @@ public class EmpleadoBusiness {
         }
     }
 
+    //LLamar al metodo registrarEmpleado JPA
+
     public void eliminarEmpleado(int id) throws SQLException, ClassNotFoundException {
         empleadoDao.eliminarEmpleado(id);
     }
@@ -87,6 +89,11 @@ public class EmpleadoBusiness {
 
     }
 
+
+    //obtenerDatos Dashboard JPA
+    public EmpleadoDashboard obtenerDatosDashboardJPA() {
+        return empleadoDashboardDao.getJPA();
+    }
 
     public EmpleadoDashboard obtenerDatosDashboard() throws SQLException, ClassNotFoundException {
         return empleadoDashboardDao.get();
