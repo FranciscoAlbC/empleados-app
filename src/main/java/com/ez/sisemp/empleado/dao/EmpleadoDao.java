@@ -47,7 +47,6 @@ public class EmpleadoDao{
     private static final String JPQL_DELETE_EMPLEADO = "UPDATE EmpleadoEntity e SET e.estado = 0 WHERE e.id = :id";
 
 
-
     private static String SQL_UPDATE_EMPLEADO = "UPDATE empleado SET nombres = ?, apellido_pat = ?, apellido_mat = ?, id_departamento = ?, correo = ?, salario = ? WHERE id = ?;";
     private static String SQL_DELETE_EMPLEADO = "UPDATE empleado set activo=0 WHERE id = ?;";
     private static String SQL_INSERT_EMPLEADO = "INSERT INTO empleado (codigo_empleado, nombres, apellido_pat, apellido_mat, id_departamento, correo, fecha_nacimiento, salario) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
@@ -135,11 +134,10 @@ public class EmpleadoDao{
 
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(empleado);
+            entityManager.persist(empleado); //entidad 'pre armada'
             entityManager.getTransaction().commit();
         } finally {
             entityManager.close();
         }
-
     }
 }

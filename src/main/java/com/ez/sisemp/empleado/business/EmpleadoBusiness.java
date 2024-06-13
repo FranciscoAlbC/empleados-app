@@ -39,6 +39,10 @@ public class EmpleadoBusiness {
     }
 
     //LLamar al metodo registrarEmpleado JPA
+    public void registrarEmpleadoJpa(EmpleadoEntity empleadoEntity){
+        empleadoEntity.setCodigoEmpleado(generarCodigoEmpleado());
+        empleadoDao.agregarEmpleadoJPA(empleadoEntity);
+    }
 
     public void eliminarEmpleado(int id) throws SQLException, ClassNotFoundException {
         empleadoDao.eliminarEmpleado(id);

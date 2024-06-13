@@ -1,6 +1,7 @@
 package com.ez.sisemp.empleado.servlet;
 
 import com.ez.sisemp.empleado.business.EmpleadoBusiness;
+import com.ez.sisemp.empleado.entity.EmpleadoEntity;
 import com.ez.sisemp.empleado.exception.EmailAlreadyInUseException;
 import com.ez.sisemp.empleado.model.Empleado;
 import com.ez.sisemp.parametro.dao.ParametroDao;
@@ -45,8 +46,8 @@ public class RegistrarEmpleadoServlet extends HttpServlet {
             return;
         }
         try {
-            Empleado empleado = createEmpleadoFromRequest(request);
-            empleadoBusiness.registrarEmpleado(empleado);
+            EmpleadoEntity empleadoEntity = createEmpleadoEntityFromRequest(request);
+            empleadoBusiness.registrarEmpleadoJpa(empleadoEntity);
             request.setAttribute("msj", "Empleado registrado correctamente");
             response.sendRedirect(Routes.EMPLEADO.getRoute());
         } catch (ParseException e) {
@@ -89,4 +90,27 @@ public class RegistrarEmpleadoServlet extends HttpServlet {
         List<Departamento> departamentos = parametroDao.obtenerDepartamentos();
         request.setAttribute("departamentos", departamentos);
     }
+
+
+    //Crear Entidad Empleado from Request para pasar al metodo registrar empleado con jpa
+    private EmpleadoEntity createEmpleadoEntityFromRequest(HttpServletRequest request) throws ParseException {
+        String strDate = request.getParameter("fechaNacimiento");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
+
+        EmpleadoEntity empleadoEntity = new EmpleadoEntity();
+
+        empleadoEntity.setNombres(request.getParameter("nombres"));
+        empleadoEntity.setApellidoPat(request.getParameter("apellidoPat"));
+        empleadoEntity.setApellidoMat(request.getParameter("apellidoMat"));
+        empleadoEntity.setIdDepartamento(Integer.parseInt(request.getParameter("idDepartamento")));
+        empleadoEntity.setCorreo(request.getParameter("correo"));
+        empleadoEntity.setSalario(Double.parseDouble(request.getParameter("salario")));
+        empleadoEntity.setFechaNacimiento(sdf.parse(strDate));
+
+        return empleadoEntity;
+    }
+
+
+
 }
