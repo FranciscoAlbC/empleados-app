@@ -7,6 +7,7 @@ import com.ez.sisemp.shared.config.MySQLConnection;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 
 //import javax.persistence.EntityManager;
 //import javax.persistence.EntityManagerFactory;
@@ -43,6 +44,9 @@ public class EmpleadoDao{
             SELECT e
             FROM EmpleadoEntity e
             """;
+    private static final String JPQL_DELETE_EMPLEADO = "UPDATE EmpleadoEntity e SET e.estado = 0 WHERE e.id = :id";
+
+
 
     private static String SQL_UPDATE_EMPLEADO = "UPDATE empleado SET nombres = ?, apellido_pat = ?, apellido_mat = ?, id_departamento = ?, correo = ?, salario = ? WHERE id = ?;";
     private static String SQL_DELETE_EMPLEADO = "UPDATE empleado set activo=0 WHERE id = ?;";
@@ -80,6 +84,21 @@ public class EmpleadoDao{
                                                 .prepareStatement(SQL_DELETE_EMPLEADO);
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
+    }
+
+    //Eliminar empleado (UPDATE) JPA
+    public void eliminarEmpleadoJpa(int id) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("devUnit");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        entityManager.getTransaction().begin();
+
+        Query query = entityManager.createQuery(JPQL_DELETE_EMPLEADO);
+        query.setParameter("id", id);
+        int rowsUpdated = query.executeUpdate();
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 
     public void agregarEmpleado(Empleado empleado) throws SQLException, ClassNotFoundException {

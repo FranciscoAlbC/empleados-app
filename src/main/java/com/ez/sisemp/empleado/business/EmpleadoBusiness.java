@@ -44,6 +44,11 @@ public class EmpleadoBusiness {
         empleadoDao.eliminarEmpleado(id);
     }
 
+    //Llamar al metodo EliminarEmpleado JPA
+    public void eliminarEmpleadoJpa(int id) {
+        empleadoDao.eliminarEmpleadoJpa(id);
+    }
+
     public List<Empleado> obtenerEmpleados() throws SQLException, ClassNotFoundException {
         var empleados = empleadoDao.obtenerEmpleados();
         if(empleados.isEmpty()){

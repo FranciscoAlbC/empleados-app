@@ -35,6 +35,11 @@ public class EmpleadoEntity {
     @Column(name = "fecha_nacimiento")
     Date fechaNacimiento;
 
+    @Column(name = "activo")
+    Integer estado;
+
+
+
     public Long getId() {
         return id;
     }
@@ -107,5 +112,13 @@ public class EmpleadoEntity {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 }
