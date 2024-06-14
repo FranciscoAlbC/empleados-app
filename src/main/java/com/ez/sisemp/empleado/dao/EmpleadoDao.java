@@ -78,6 +78,36 @@ public class EmpleadoDao{
         //TODO: Implementar la edición de un empleado
     }
 
+    //Editar Empleado JPA 2 metodos
+        // Consultar y Editar
+    public EmpleadoEntity consultarEmpleadoById(Long id) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("devUnit");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            var empleado = entityManager.find(EmpleadoEntity.class, id);
+            return empleado;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public void editarEmpleado(EmpleadoEntity empleado){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("devUnit");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(empleado);
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
+        }
+    }
+
+
+
+
     public void eliminarEmpleado(int id) throws SQLException, ClassNotFoundException {
         PreparedStatement preparedStatement = MySQLConnection.getConnection()
                                                 .prepareStatement(SQL_DELETE_EMPLEADO);

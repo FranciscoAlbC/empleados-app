@@ -132,4 +132,14 @@ public class EmpleadoBusiness {
             throw new IllegalArgumentException("El salario del empleado no puede ser negativo");
         }
     }
+
+    //llamar metodos para Editar Empleado con JPA
+    public EmpleadoEntity consultarEmpleadoById(Long id) {
+        return empleadoDao.consultarEmpleadoById(id);
+    }
+
+    public void editarEmpleado(EmpleadoEntity empleado) {
+        empleadoDao.editarEmpleado(empleado);
+    }
+
 }
