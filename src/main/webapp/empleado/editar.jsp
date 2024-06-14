@@ -112,6 +112,8 @@
                                             <!--Campos id y codigoEmpleado hidden para captar datos y poder enviarlos createEntityFromRequest y hacer el merge-->
                                             <input type="hidden" name="id" value="${empleado.id}" />
                                             <input type="hidden" name="codigoEmpleado" value="${empleado.codigoEmpleado}" />
+                                            <!-- Para pasar a la entidad y controlar el estado -->
+                                            <input type="hidden" name="estado" value="${empleado.estado}" />
                                             <div class="form-group">
                                                 <label for="nombres">Nombres</label>
                                                 <input type="text" name="nombres" class="form-control" id="nombres" value="${empleado.nombres}">

@@ -79,11 +79,13 @@ public class EditarEmpleadoServlet extends HttpServlet {
 
         Long id = Long.parseLong(req.getParameter("id"));
         String codigoEmpleado = req.getParameter("codigoEmpleado");
+        String estado = req.getParameter("estado");
 
 
         empleadoEntity.setId(id);
         empleadoEntity.setCodigoEmpleado(codigoEmpleado);
-        //empleadoEntity.setEstado(estado);
+        empleadoEntity.setEstado(Integer.parseInt(estado));
+
         empleadoEntity.setNombres(req.getParameter("nombres"));
         empleadoEntity.setApellidoPat(req.getParameter("apellidoPat"));
         empleadoEntity.setApellidoMat(req.getParameter("apellidoMat"));
