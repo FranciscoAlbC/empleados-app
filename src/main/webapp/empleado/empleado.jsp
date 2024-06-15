@@ -227,6 +227,11 @@
                 <div class="copyright text-center my-auto">
                     <span>Copyright &copy; 2023 Hecho para fines educativos</span>
                 </div>
+                <!-- Log OUT Button -->
+                <form action="/logout" method="post">
+                    <button type="submit" class="btn btn-danger">Cerrar Sesion</button>
+                </form>
+                <!-- Log OUT Button -->
             </div>
         </footer>
         <!-- End of Footer -->
