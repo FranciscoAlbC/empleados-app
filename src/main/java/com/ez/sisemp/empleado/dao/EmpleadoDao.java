@@ -44,6 +44,8 @@ public class EmpleadoDao{
             SELECT e
             FROM EmpleadoEntity e
             """;
+            //WHERE e.estado = 1 --> Listar solo empleados Activos
+
     private static final String JPQL_DELETE_EMPLEADO = "UPDATE EmpleadoEntity e SET e.estado = 0 WHERE e.id = :id";
 
 

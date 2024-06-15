@@ -50,7 +50,7 @@ public class AdminBusiness {
                 u.getContrasena(),
                 "",
                 u.getUltimaConexion(),
-                true,
+                estado,
                 u.getPrimerNombre(),
                 u.getApellidoPaterno(),
                 u.getFotoPerfil(),
