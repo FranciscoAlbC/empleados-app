@@ -107,6 +107,7 @@ public class RegistrarEmpleadoServlet extends HttpServlet {
         empleadoEntity.setCorreo(request.getParameter("correo"));
         empleadoEntity.setSalario(Double.parseDouble(request.getParameter("salario")));
         empleadoEntity.setFechaNacimiento(sdf.parse(strDate));
+        empleadoEntity.setEstado(1); //set empleado como ACTIVO al registrarlo
 
         return empleadoEntity;
     }
