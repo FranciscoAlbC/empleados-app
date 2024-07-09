@@ -37,14 +37,14 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="empleado">
+            <a class="nav-link" href="${pageContext.request.contextPath}/empleado"> <!--Redirect a empleado.jsp-->
                 <span>Dashboard</span></a>
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider">
         <!-- Nav Item -->
         <li class="nav-item">
-            <form action ="/registrar" method="get">
+            <form action ="registrar" method="get">
                 <input type="submit" value="Registrar Empleado" style="background:none;border:none;color:white;font-size: 1rem;font-weight: 400;line-height: 1.5">
             </form>
         </li>
@@ -54,7 +54,7 @@
             </form>
         </li>
         <li class="nav-item">
-            <form action ="/exportar-excel" method="post">
+            <form action ="exportar-excel" method="post">
                 <input type="submit" value="Exportar a Excel" style="background:none;border:none;color:white;font-size: 1rem;font-weight: 400;line-height: 1.5">
             </form>
         </li>
